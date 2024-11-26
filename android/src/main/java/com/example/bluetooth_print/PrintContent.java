@@ -133,6 +133,7 @@ public class PrintContent {
             int width = (int) (config.get("width") == null ? 60 : config.get("width")); // 单位：mm
             int height = (int) (config.get("height") == null ? 75 : config.get("height")); // 单位：mm
             int gap = (int) (config.get("gap") == null ? 0 : config.get("gap")); // 单位：mm
+            int imageWidth = (int) (config.get("imageWidth") == null ? 420 : config.get("imageWidth")); // 单位：点
 
             // 设置标签尺寸宽高，按照实际尺寸设置 单位mm
             tsc.addSize(width, height);
@@ -178,7 +179,7 @@ public class PrintContent {
                   } else if ("image".equals(type)) {
                         byte[] bytes = Base64.decode(content, Base64.DEFAULT);
                         Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                        tsc.addBitmap(x, y, LabelCommand.BITMAP_MODE.OVERWRITE, 420, bitmap);
+                        tsc.addBitmap(x, y, LabelCommand.BITMAP_MODE.OVERWRITE, imageWidth, bitmap);
                   }
             }
 
